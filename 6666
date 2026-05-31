@@ -11,11 +11,11 @@
             "homePage": "https://www.252035.xyz/xs/tvbox/nostr.html"
         },
         {
-            "key": "52tv",
-            "name": "52tv",
+            "key": "枫叶",
+            "name": "枫叶",
             "type": 3,
-            "api": "csp_52tv",
-            "homePage": "./html/52tv.html"
+            "api": "csp_枫叶",
+            "homePage": "./html/枫叶"
         },
         {
             "key": "豆瓣",

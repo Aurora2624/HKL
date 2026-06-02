@@ -19,7 +19,7 @@
       },
        {
         "key":"CZ",
-        "name":"🐬厂长资源",
+        "name":"🐬厂长资源(关梯子使用)",
         "type":3,
         "api":"csp_czjy",
         "homePage":"https://fgblh.github.io/uhuj.github.io/厂长.html"
@@ -280,7 +280,7 @@
          },  
       {
         "key":"52SP",
-        "name":"🐬52体育",
+        "name":"🐬52体育(关梯子使用)",
         "type":3,
         "api":"csp_52sp",
         "homePage":"https://fgblh.github.io/uhuj.github.io/52体育.html"

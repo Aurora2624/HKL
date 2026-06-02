@@ -32,6 +32,13 @@
         "homePage":"https://fgblh.github.io/uhuj.github.io/歪比巴卜.html"
       },
       {
+        "key":"PTT",
+        "name":"🐬PTT视频",
+        "type":3,
+        "api":"csp_ptt",
+        "homePage":"https://fgblh.github.io/uhuj.github.io/ptt.html"
+      },
+      {
       "key": "非凡",
       "name": "🐬非凡影视",
       "type": 1,

@@ -107,12 +107,19 @@
         "api":"csp_ppnix",
         "homePage":"https://fgblh.github.io/uhuj.github.io/ppnix.html"
       },
-		{
+	  {
         "key":"360JH",
         "name":"🐬360影视(关梯子使用)",
         "type":3,
         "api":"csp_360jh",
         "homePage":"https://fgblh.github.io/uhuj.github.io/360聚合.html"
+      },
+	  {
+        "key":"WOJH",
+        "name":"🐬玩偶聚合(关梯子使用)",
+        "type":3,
+        "api":"csp_wojh",
+        "homePage":"https://fgblh.github.io/uhuj.github.io/玩偶聚合.html"
       },
 		{"key": "aidan", "name": "🐬艾旦影视(聚)(有三级片)🔞", "type": 1, "api": "https://lovedan.net/api.php/provide/vod/", "searchable": 1, "quickSearch": 1, "filterable": 1},
 		{"key": "ikun", "name": "🐬爱坤┃影视(有三级片)", "type": 1, "api": "https://ikunzyapi.com/api.php/provide/vod/from/ikm3u8/at/json", "searchable": 1, "quickSearch": 1, "filterable": 1},

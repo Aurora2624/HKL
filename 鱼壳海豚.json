@@ -1109,7 +1109,7 @@
         },
         {
             "key": "玩偶",
-            "name": "玩偶｜4K",
+            "name": "玩偶｜4K[追剧]",
             "type": 3,
             "api": "csp_Wogg",
             "searchable": 1,
@@ -1372,17 +1372,6 @@
             "name": "围观[短剧]",
             "type": 3,
             "api": "csp_WeiguanDJ",
-            "searchable": 1,
-            "changeable": 1,
-            "quickSearch": 1,
-            "filterable": 1,
-            "genre": "shortdrama"
-        },
-        {
-            "key": "星芽短剧",
-            "name": "星芽[短剧]",
-            "type": 3,
-            "api": "https://cnb.cool/fish2018/xs/-/git/raw/main/py/星芽短剧.py",
             "searchable": 1,
             "changeable": 1,
             "quickSearch": 1,

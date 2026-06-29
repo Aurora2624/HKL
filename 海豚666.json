@@ -1,3 +1,4 @@
+
 {
     "spider": "./tvbox.jar",
     "logo": "https://img.freepik.com/free-vector/cute-dolphin-swimming-cartoon-vector-icon-illustration-animal-nature-icon-isolated-flat-vector_138676-12582.jpg?semt=ais_hybrid&w=740&q=80",
@@ -416,6 +417,12 @@
 			"name": "🐬51爆料.py｜🔞",
 			"type": 3,
 			"api": "https://ghfast.top/https://raw.githubusercontent.com/FGBLH/GHK/refs/heads/main/py/51爆料.py"
+		},
+		{
+			"key": "91qg",
+			"name": "🐬91吃瓜.py｜🔞",
+			"type": 3,
+			"api": "https://ghfast.top/https://raw.githubusercontent.com/FGBLH/GHK/refs/heads/main/py/91吃瓜.py"
 		},
 		{
 			"key": "scpd",

@@ -24,7 +24,7 @@ class Spider(Spider):
         self.headers = {
             'Origin': origin,
             'Referer': f"{origin}/",
-            'User-Agent': 'okhttp'
+            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:144.0) Gecko/20100101 Firefox/144.0'
         }
         self.stripchat_key = self.decode_key_compact()
         # 缓存字典
@@ -80,7 +80,7 @@ class Spider(Spider):
             videos.append({
                 "vod_id": name,
                 "vod_name": f"{flag}{name}",
-                "vod_pic": f"https://img.doppiocdn.org/thumbs/{stamp}/{id}",
+                "vod_pic": f"https://img.doppiocdn.net/thumbs/{stamp}/{id}",
                 "vod_remarks": remark
             })
         total = int(rsp['filteredCount'])
@@ -148,14 +148,14 @@ class Spider(Spider):
             videos.append({
                 "vod_id": name,
                 "vod_name": f"{flag}{name}",
-                "vod_pic": f"https://img.doppiocdn.org/thumbs/{stamp}/{id}",
+                "vod_pic": f"https://img.doppiocdn.net/thumbs/{stamp}/{id}",
                 "vod_remarks": remark
             })
         result['list'] = videos
         return result
 
     def playerContent(self, flag, id, vipFlags):
-        domain = f"https://edge-hls.growcdnssedge.com/hls/{id}/master/{id}_auto.m3u8"
+        domain = f"https://edge-hls.doppiocdn.net/hls/{id}/master/{id}_auto.m3u8?playlistType=lowLatency"
         rsp = requests.get(domain, headers=self.headers).text
         lines = rsp.strip().split('\n')
         psch = ''

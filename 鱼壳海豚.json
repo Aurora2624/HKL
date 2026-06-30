@@ -524,6 +524,12 @@
 			"api": "https://xn--fjq53n.xyz/Ting/yinyue/网易云音乐1.py"
 		},
 		{
+			"key": "YYMP3",
+			"name": "🐬YYMP3音乐网.py",
+			"type": 3,
+			"api": "https://ghfast.top/https://raw.githubusercontent.com/FGBLH/GHK/refs/heads/main/py/YYMP3音乐网.py"
+		},
+		{
 			"key": "shjb",
 			"name": "🐬色播聚合.py｜🔞[成人]",
 			"type": 3,

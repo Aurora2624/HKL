@@ -41,7 +41,7 @@ class Spider(Spider):
     def destroy(self):
         pass
 
-    xhost='https://missav.ws/dm334'
+    xhost='https://client-rapi-missav.recombee.com'
 
     countr='/dm15/cn'
 

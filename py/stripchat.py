@@ -84,7 +84,7 @@ class Spider(Spider):
             "vod_pic": str(user['avatarUrl']),
             "vod_director": username,
             "vod_area": str(user['country']),
-            'vod_play_from': '老僧酿酒',
+            'vod_play_from': '直播线路',
             'vod_play_url': f"{id}${id}"
         }
         result = {

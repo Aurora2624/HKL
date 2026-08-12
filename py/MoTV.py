@@ -10,10 +10,10 @@ except ImportError:
         pass
 
 class Spider(BaseSpider):
-    BASE_URL = "https://www.motv.app"
+    BASE_URL = "https://motv.app/cn/"
     HEADERS = {
         "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0 Safari/537.36",
-        "Referer": "https://www.motv.app/",
+        "Referer": "https://motv.app/cn/",
         "Accept": "*/*"
     }
 

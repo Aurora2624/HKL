@@ -1,7 +1,7 @@
 {
   "plugins": [
     {
-      "name": "网易",
+      "name": "网易云",
       "url": "https://music.nairocy.com/file/%E7%BD%91%E6%98%93%E9%9F%B3%E4%B9%90.js",
       "version": "v2025.09.14"
     },

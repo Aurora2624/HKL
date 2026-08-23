@@ -392,7 +392,7 @@ class Spider(Spider):
       # --- 线路3: StripOl ---
       elif id.startswith('sacf'):
         rsp = self.session_get(
-            f'https://edge-hls.sacfedge.com/hls/{sid}/master/{sid}_auto.m3u8?playlistType=lowLatency'
+            f'https://edge-hls.growcdnssedge.com/hls/{sid}/master/{sid}_auto.m3u8?playlistType=lowLatency'
         ).text
         lines = rsp.strip().split('\n')
         psch, pkey = 'v2', self.stripchat_pkey

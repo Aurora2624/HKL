@@ -379,7 +379,7 @@ class Spider(Spider):
       # --- 线路2: stripchat.global ---
       if id.startswith('lemon'):
         rsp = self.session_get(
-            f'https://edge-hls.growcdnssedge.com/hls/{sid}/master/{sid}_auto.m3u8?playlistType=lowLatency'
+            f'https://edge-hls.sacdnssedge.com/hls/{sid}/master/{sid}_auto.m3u8?playlistType=lowLatency'
         ).text
         lines = rsp.strip().split('\n')
         for i, line in enumerate(lines):

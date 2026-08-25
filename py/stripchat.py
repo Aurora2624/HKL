@@ -47,14 +47,12 @@ class Spider(Spider):
     self.stripchat_key = "YzWScuyQRGAGcxx1KIJmiQ7BY9Vi35ftwLqUOVO8uoo="
     self.stripchat_pkey = "Fq6m2TO2ZeBkRPm9"
     self.stripchat_play = "0 0"
-    # 👈 修复：记录当前弹幕房间，供线程存活判断用
     self.danmu_active_room = ''
     self.danmu_cache = {}
     self.danmu_threads = {}
     self.danmu_lock = threading.Lock()
 
   def _update_headers_for_host(self, host_url):
-    """根据当前使用的 Host 刷新请求头"""
     self.host = host_url
     self.headers["Origin"] = host_url
     self.headers["Referer"] = f"{host_url}/"
@@ -64,7 +62,6 @@ class Spider(Spider):
     }
 
   def _request_with_failover(self, path, timeout=(3, 5)):
-    """逐个域名尝试请求列表/详情，直到成功为止"""
     urls_to_try = list(self.dynamic_urls)
     if self.host in urls_to_try:
       urls_to_try.remove(self.host)
@@ -116,7 +113,6 @@ class Spider(Spider):
     pass
 
   def destroy(self):
-    # 👈 修复：退出时停掉所有弹幕线程
     self.danmu_active_room = ''
     with self.danmu_lock:
       threads = list(self.danmu_threads.items())
@@ -132,7 +128,6 @@ class Spider(Spider):
     pass
 
   def datetime_utc8(self, strTime, outFormat):
-    # 👈 修复：容错空值/非法格式，不再抛异常
     try:
       dt = datetime.strptime(str(strTime), '%Y-%m-%dT%H:%M:%SZ')
     except Exception:
@@ -149,9 +144,6 @@ class Spider(Spider):
     VALUE = [
         {'n': '新主播', 'v': 'autoTagNew'},
         {'n': '推荐', 'v': 'recommended'},
-        {'v': 'fuckMachine', 'n': '炮机'},
-        {'n': '青年', 'v': 'ageTeen'},
-        {'n': 'VR', 'v': 'autoTagVr'},
         {'n': '亚洲人', 'v': 'ethnicityAsian'},
         {'n': '🇨🇳中国', 'v': 'tagLanguageChinese'},
         {'n': '🇯🇵日本', 'v': 'tagLanguageJapanese'},
@@ -177,6 +169,9 @@ class Spider(Spider):
         {'v': 'tagLanguageBrazilian', 'n': '🇧🇷巴西'},
         {'v': 'tagLanguageThai', 'n': '🇹🇭泰国'},
         {'v': 'tagLanguageItalian', 'n': '🇮🇹意大利'},
+        {'v': 'fuckMachine', 'n': '炮机'},
+        {'n': '青年', 'v': 'ageTeen'},
+        {'n': 'VR', 'v': 'autoTagVr'},
         {'n': '亚洲', 'v': 'ethnicityAsian'},
         {'n': '白人', 'v': 'ethnicityWhite'},
         {'n': '拉丁', 'v': 'ethnicityLatino'},
@@ -215,9 +210,9 @@ class Spider(Spider):
     if not is_live or status == 'off':
       status_text = '⚫ 已下播'
     elif status == 'public':
-      status_text = '🔴 直播中'
+      status_text = '直播'
     else:
-      status_text = '🎫 门票房'
+      status_text = '收费房'
 
     return f'👤 {viewers}人 | {status_text}' if viewers else status_text
 
@@ -328,7 +323,7 @@ class Spider(Spider):
         self.stripchat_play = f'0 {timestp} {model_id}'
       flag = self.country_code_to_flag(str(user.get('country', '')).strip())
 
-      remark = '🔴 直播中' if isLive else '⚫ 已下播'
+      remark = '直播' if isLive else '⚫ 已下播'
       show = info.get('show') or info.get('groupShowAnnouncement')
       if show:
         startAt = show.get('createdAt') or show.get('startAt')
@@ -338,7 +333,6 @@ class Spider(Spider):
           )
 
       director = f'{flag}{username if username else model_id}'
-      # 👈 修复：详情阶段先拉一次历史聊天，desc 不再是空的；同时预热弹幕线程
       try:
         if isLive:
           self.start_danmu(uid)
@@ -459,9 +453,6 @@ class Spider(Spider):
     return str(text or '').replace('&', '&amp;').replace('<', '&lt;').replace('>', '&gt;')
 
   def proxy_danmu(self, room_id):
-    """输出 Bilibili 风格弹幕 XML。
-    👈 修复：p 的第一段改用真实相对秒数（按 createdAt 计算），不再是 i*1.5 假时间轴
-    """
     try:
       room_id = str(room_id)
       with self.danmu_lock:
@@ -651,13 +642,6 @@ class Spider(Spider):
       self.log(f'弹幕线程启动失败: {e}')
 
   def _danmu_poll_worker(self, room_id, stop_event):
-    """
-    👈 修复要点：删掉了原来每圈检查 {base_url}/media 的"自杀逻辑"。
-    该端点不存在/state 恒为 false，导致线程启动几秒后必然退出。
-    现在线程只由两种方式结束：
-      1. 切换房间/destroy 时外部 stop_event.set()
-      2. 连续多次拉取失败（网络彻底不可用）才自动退出，之后可由下次 start_danmu 重启
-    """
     fail_count = 0
     while True:
       if self.danmu_active_room != room_id:
@@ -736,7 +720,6 @@ class Spider(Spider):
   _updating_desc = False
 
   def refresh_desc_if_needed(self, room_id, force=False):
-    """👈 新增：有新弹幕后节流刷新详情页简介，把最新聊天追加进 vod_content"""
     now = int(time.time())
     if not force and (self._updating_desc or now - self._desc_refresh_ts < 15):
       return False

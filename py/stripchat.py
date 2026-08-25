@@ -142,8 +142,8 @@ class Spider(Spider):
         {'type_name': '跨性别', 'type_id': 'trans'},
     ]
     VALUE = [
-        {'n': '新主播', 'v': 'autoTagNew'},
         {'n': '推荐', 'v': 'recommended'},
+		{'n': '新主播', 'v': 'autoTagNew'},
         {'n': '亚洲人', 'v': 'ethnicityAsian'},
         {'n': '🇨🇳中国', 'v': 'tagLanguageChinese'},
         {'n': '🇯🇵日本', 'v': 'tagLanguageJapanese'},
@@ -169,9 +169,6 @@ class Spider(Spider):
         {'v': 'tagLanguageBrazilian', 'n': '🇧🇷巴西'},
         {'v': 'tagLanguageThai', 'n': '🇹🇭泰国'},
         {'v': 'tagLanguageItalian', 'n': '🇮🇹意大利'},
-        {'v': 'fuckMachine', 'n': '炮机'},
-        {'n': '青年', 'v': 'ageTeen'},
-        {'n': 'VR', 'v': 'autoTagVr'},
         {'n': '亚洲', 'v': 'ethnicityAsian'},
         {'n': '白人', 'v': 'ethnicityWhite'},
         {'n': '拉丁', 'v': 'ethnicityLatino'},
@@ -179,6 +176,9 @@ class Spider(Spider):
         {'n': '印度', 'v': 'ethnicityIndian'},
         {'n': '阿拉伯', 'v': 'ethnicityMiddleEastern'},
         {'n': '黑人', 'v': 'ethnicityEbony'},
+		{'v': 'fuckMachine', 'n': '炮机'},
+        {'n': '青年', 'v': 'ageTeen'},
+        {'n': 'VR', 'v': 'autoTagVr'},
         {'n': '✨新主播', 'v': 'autoTagNew'},
         {'n': 'VR直播', 'v': 'autoTagVr'},
         {'n': '18+', 'v': 'ageTeen'},
@@ -210,7 +210,7 @@ class Spider(Spider):
     if not is_live or status == 'off':
       status_text = '⚫ 已下播'
     elif status == 'public':
-      status_text = '直播'
+      status_text = '直播中'
     else:
       status_text = '收费房'
 
@@ -323,7 +323,7 @@ class Spider(Spider):
         self.stripchat_play = f'0 {timestp} {model_id}'
       flag = self.country_code_to_flag(str(user.get('country', '')).strip())
 
-      remark = '直播' if isLive else '⚫ 已下播'
+      remark = '直播中' if isLive else '⚫ 已下播'
       show = info.get('show') or info.get('groupShowAnnouncement')
       if show:
         startAt = show.get('createdAt') or show.get('startAt')
@@ -391,7 +391,7 @@ class Spider(Spider):
       # --- 线路2: stripchat.global ---
       if id.startswith('lemon'):
         rsp = self.session_get(
-            f'https://edge-hls.growcdnssedge.com/hls/{sid}/master/{sid}_auto.m3u8?playlistType=lowLatency'
+            f'https://edge-hls.growcdnssedge.com/hls/{sid}/master/{sid}_auto.m3u8?playlistType=standard'
         ).text
         lines = rsp.strip().split('\n')
         for i, line in enumerate(lines):
@@ -404,7 +404,7 @@ class Spider(Spider):
       # --- 线路3: StripOl ---
       elif id.startswith('sacf'):
         rsp = self.session_get(
-            f'https://edge-hls.sacfedge.com/hls/{sid}/master/{sid}_auto.m3u8?playlistType=lowLatency'
+            f'https://edge-hls.sacfedge.com/hls/{sid}/master/{sid}_auto.m3u8?playlistType=standard'
         ).text
         lines = rsp.strip().split('\n')
         psch, pkey = 'v2', self.stripchat_pkey
@@ -418,7 +418,7 @@ class Spider(Spider):
       # --- 线路1: StripChat (主线路) ---
       else:
         rsp = self.session_get(
-            f'https://edge-hls.{self.Doppiocdn}/hls/{sid}/master/{sid}_auto.m3u8?playlistType=lowLatency'
+            f'https://edge-hls.{self.Doppiocdn}/hls/{sid}/master/{sid}_auto.m3u8?playlistType=standard'
         ).text
         lines = rsp.strip().split('\n')
         psch, pkey = 'v2', self.stripchat_pkey
@@ -521,11 +521,17 @@ class Spider(Spider):
     if is_time_up or is_code_changed:
       self.stripchat_play = f'{rsp.status_code} {timestp} {username}'
       self.log('计划更新')
-      self.update_vod(username)
+      threading.Thread(
+          target=self.update_vod, args=(username,), daemon=True
+      ).start()
       if is_code_changed:
         self.log('code变更')
-        self.post('http://127.0.0.1:9978/action?do=refresh&type=player')
-        return [404, 'text/plain', '']
+        try:
+          rsp2 = self.session_get(url, timeout=(5, 10))
+          if rsp2.status_code == 200:
+            rsp = rsp2
+        except Exception:
+          pass
     if rsp.status_code == 403:
       rsp = self.session_get(
           re.sub(r'(_\d+p\d*)?\.m3u8', '_160p_blurred.m3u8', url)
@@ -666,7 +672,6 @@ class Spider(Spider):
     self.log(f'弹幕线程结束: {room_id}')
 
   def fetch_chat_once(self, room_id):
-    """拉一次聊天，返回新增条数。👈 修复：oldId 提前初始化，防 UnboundLocalError"""
     room_id = str(room_id)
     path = f'/api/front/v2/models/{room_id}/chat?source=regular&uniq={int(time.time()*1000)}'
     data = self._request_with_failover(path)

@@ -26,7 +26,7 @@ class Spider(Spider):
             "name": "🐬智能接口",
             "key": "自动加载",
             "type": 3,
-            "api": "https://ghfast.top/https://raw.githubusercontent.com/FGBLH/EHR663/refs/heads/main/py/自动加载678.py"
+            "api": "https://ghfast.top/https://raw.githubusercontent.com/FGBLH/EHR663/refs/heads/main/py/智能加载v5.1.py"
          },
 		{
             "name": "🐬弹幕",

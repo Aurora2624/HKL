@@ -20,7 +20,7 @@ from base.spider import Spider as BaseSpider
 # 自定义扫描目录：
 #   留空 ""  -> 使用当前脚本所在目录为根目录
 #   填路径  -> 使用自定义目录，例如 r"/storage/emulated/0/lz/"
-CUSTOM_SCAN_DIR = "/storage/emulated/0/"
+CUSTOM_SCAN_DIR = "/storage/emulated/0/peekpro/"
 
 # 扫描目录：以当前脚本所在目录为根目录（递归子目录）
 SCAN_DIR = (

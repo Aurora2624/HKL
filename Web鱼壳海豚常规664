@@ -136,6 +136,12 @@
             "type": 3,
             "api": "https://ghfast.top/https://raw.githubusercontent.com/phu889/kjh998/refs/heads/main/py/星梦Asmr.py"
         },
+        {
+        	"key": "魔法影视",
+            "name": "🐬魔法影视[追剧]",
+            "type": 3,
+            "api": "https://ghfast.top/https://raw.githubusercontent.com/phu889/kjh998/refs/heads/main/py/魔法影视.py"
+		},
 		{
             "key": "ASMR吧",
             "name": "🐬ASMR吧.py[其他]",

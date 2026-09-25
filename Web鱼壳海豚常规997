@@ -143,6 +143,18 @@
             "api": "https://ghfast.top/https://raw.githubusercontent.com/phu889/kjh998/refs/heads/main/py/ASMR吧.py"
         },
         {
+        	"key": "大白鲨影院",
+            "name": "🐬大白鲨影院[追剧]",
+            "type": 3,
+            "api": "https://ghfast.top/https://raw.githubusercontent.com/phu889/kjh998/refs/heads/main/py/大白鲨影院.py"
+		},
+        {
+        	"key": "咸鱼影视",
+            "name": "🐬咸鱼影视[追剧]",
+            "type": 3,
+            "api": "https://ghfast.top/https://raw.githubusercontent.com/phu889/kjh998/refs/heads/main/py/咸鱼影视.py"
+		},
+        {
         	"key": "1234影视",
             "name": "🐬1234影视[追剧]",
             "type": 3,

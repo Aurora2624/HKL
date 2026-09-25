@@ -143,10 +143,10 @@
             "api": "https://ghfast.top/https://raw.githubusercontent.com/phu889/kjh998/refs/heads/main/py/ASMR吧.py"
         },
         {
-        	"key": "魔法影视",
-            "name": "🐬魔法影视[追剧]",
+        	"key": "LIBVIO",
+            "name": "🐬LIBVIO[追剧]",
             "type": 3,
-            "api": "https://ghfast.top/https://raw.githubusercontent.com/phu889/kjh998/refs/heads/main/py/魔法影视.py"
+            "api": "https://ghfast.top/https://raw.githubusercontent.com/phu889/kjh998/refs/heads/main/py/LIBVIO.py"
 		},
         {
         	"key": "咕噜咕噜",
@@ -159,6 +159,12 @@
             "name": "🐬ik4k影院(关梯)[追剧]",
             "type": 3,
             "api": "https://ghfast.top/https://raw.githubusercontent.com/phu889/kjh998/refs/heads/main/py/ik4k影院.py"
+		},
+        {
+        	"key": "魔法影视",
+            "name": "🐬魔法影视[追剧]",
+            "type": 3,
+            "api": "https://ghfast.top/https://raw.githubusercontent.com/phu889/kjh998/refs/heads/main/py/魔法影视.py"
 		},
         {
         	"key": "云朵视频",

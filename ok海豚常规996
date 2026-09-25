@@ -103,6 +103,12 @@
             "api": "https://ghfast.top/https://raw.githubusercontent.com/phu889/kjh998/refs/heads/main/py/ASMR吧.py"
         },
         {
+        	"key": "LIBVIO",
+            "name": "🐬[追剧]LIBVIO",
+            "type": 3,
+            "api": "https://ghfast.top/https://raw.githubusercontent.com/phu889/kjh998/refs/heads/main/py/LIBVIO.py"
+		},
+        {
         	"key": "咕噜咕噜",
             "name": "🐬[追剧]咕噜咕噜",
             "type": 3,

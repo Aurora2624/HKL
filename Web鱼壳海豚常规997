@@ -1185,6 +1185,12 @@
       ]
     },
 		{
+			"key": "红豆短剧",
+			"name": "🐬[短剧]红豆短剧.py",
+			"type": 3,
+			"api": "https://ghfast.top/https://raw.githubusercontent.com/phu889/kjh998/refs/heads/main/py/红豆短剧.py"
+		},
+        {
 			"key": "悟圣短剧",
 			"name": "🐬悟圣短剧.py[短剧]",
 			"type": 3,

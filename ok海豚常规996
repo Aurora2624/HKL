@@ -104,7 +104,7 @@
         },
         {
         	"key": "飞牛影视",
-            "name": "🐬[追剧]飞牛影视",
+            "name": "🐬[追剧]飞牛影视(关梯)",
             "type": 3,
             "api": "https://ghfast.top/https://raw.githubusercontent.com/phu889/kjh998/refs/heads/main/py/飞牛影视.py"
 		},
